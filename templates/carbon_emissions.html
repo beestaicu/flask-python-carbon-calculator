@@ -1,0 +1,188 @@
+{%extends "index.html" %}
+
+
+{% block mainContent %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-8">Carbon Emissions Calculator</h1>
+        <p class="lead">You can try out our awesome Carbon Emissions calculator</p>
+
+    </div>
+</div>
+
+<form class="container" action="{{url_for('carbon_calculate')}}" method="post">
+    <div class="row">
+        <div class="col-lg-3">
+
+
+            <h6>Local / Imported:</h6>
+            <div class="form-check" >
+              <input class="form-check-input" type="radio" name="local_import" id="local" value ="local" required>
+              <label class="form-check-label" for="local">
+                  Local
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="local_import" value="import" id="import"  checked>
+              <label class="form-check-label" for="import">
+                  Imported
+              </label>
+            </div>
+
+            <h6>Open field / Green House</h6>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="open_green" id="open" value="open" onclick="disable() " required >
+              <label class="form-check-label" for="open">
+                  Open Field
+              </label>
+            </div>
+
+            <script>
+                function disable(){
+                    document.getElementById("heat").disabled = true;
+                    document.getElementById("yes_green").disabled =true;
+                }
+                function  enable(){
+                    document.getElementById("heat").disabled = false;
+                    document.getElementById("yes_green").disabled =false;
+                }
+
+
+            </script>
+
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="open_green" id="green" value="green" onclick="enable()" checked >
+              <label class="form-check-label" for="green">
+                  Green House
+              </label>
+            </div>
+
+            <h6>Heated / Unheated Green House</h6>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="heat_unheat" id="heat" value="heat" required>
+              <label class="form-check-label" for="heat">
+                  Heat
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="heat_unheat" id="unheat" value="unheat" checked>
+              <label class="form-check-label" for="unheat">
+                  Unheat
+              </label>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <h6>Fertilizer</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="fertilizer" id="yes_f" value="yes_f" required>
+              <label class="form-check-label" for="yes_f">
+                  Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="fertilizer" id="no_f" value="no_f"  checked>
+              <label class="form-check-label" for="no_f">
+                  No
+              </label>
+            </div>
+
+            <h6>Plant Propagation</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="plant" id="yes_p" value="yes_p"required>
+              <label class="form-check-label" for="yes_p">
+                  Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="plant" id="no_p" value="no_p" checked>
+              <label class="form-check-label" for="no_p">
+                  No
+              </label>
+            </div>
+
+            <h6>Soil Management</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="soil" id="yes_s" value = "yes_s" required>
+              <label class="form-check-label" for="yes_s">
+                  Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="soil" id="no_s" value="no_s" checked>
+              <label class="form-check-label" for="yes_s">
+                  No
+              </label>
+            </div>
+
+            <h6>Postharvest cooling</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="post" id="yes_po" value="yes_po" required>
+              <label class="form-check-label" for="yes_po">
+                  Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="post" id="no_po" value="no_po" checked>
+              <label class="form-check-label" for="no_po">
+                  No
+              </label>
+            </div>
+
+            <h6>Glasshouse Building & Maintenace</h6>
+
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="glasshouse" id="yes_green" value="yes_green" required>
+              <label class="form-check-label" for="yes_green">
+                  Yes
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="glasshouse" id="no_green" value="no_green" checked>
+              <label class="form-check-label" for="no_green">
+                  No
+              </label>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+
+            <form action="carbon_emissions.html" method="get">
+                <p>Transport Distance:</p>
+                <input type="number" id = "transport" name ="transport" value="10000" required>
+                <p>Lettuce Weight(KG)</p>
+                <input type="number" id = "weight" name = "weight" value="200000" required>
+            </form>
+        </div>
+
+         <div class="col-lg-3">
+             <div>
+                 <textarea rows="15" cols="40" class="alert {{color}}">{{note}}</textarea>
+             </div>
+             <p>Results: <input type="text" class="form-control" placeholder="Result" value="{{result}}"/></p>
+             <input type="submit" value="Calulate" class="btn btn-primary">
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</form>
+
+{% endblock %}
