@@ -111,11 +111,6 @@ def carbon_calculate():
     transport = request.form["transport"]
     weight = request.form["weight"]
 
-    fertilizer_value = 0
-    plant_value = 0
-    soil_value = 0
-    post_value = 0
-    glass_value = 0
 
     c = 0
     color = "alert-success"
@@ -139,9 +134,9 @@ def carbon_calculate():
         if open_green == 'open':
             c = 0
             c += 0.091 * fertilizer
-            c += 0.0003 * plant_value
-            c += 0.071 * soil_value
-            c += 0.043 * post_value
+            c += 0.0003 * plant
+            c += 0.071 * soil
+            c += 0.043 * post
 
             c += 0.00015 * int(transport)
             kg = int(weight)
@@ -149,20 +144,20 @@ def carbon_calculate():
             if heat_unheat == 'heat':
                 c = 0
                 c += 0.023 * fertilizer
-                c += 0.028 * plant_value
-                c += 0.157 * soil_value
-                c += 0.091 * post_value
-                c += 0.007 * glass_value
+                c += 0.028 * plant
+                c += 0.157 * soil
+                c += 0.091 * post
+                c += 0.007 * glass
                 c += 0.758
                 c += 0.00015 * int(transport)
                 kg = int(weight)
             elif heat_unheat == 'unheat':
                 c = 0
                 c += 0.01 * fertilizer
-                c += 0.025 * plant_value
-                c += 0.013 * soil_value
-                c += 0.086 * post_value
-                c += 0.007 * glass_value
+                c += 0.025 * plant
+                c += 0.013 * soil
+                c += 0.086 * post
+                c += 0.007 * glass
                 c += 0.029
                 c += 0.00015 * int(transport)
                 kg = int(weight)
@@ -170,9 +165,9 @@ def carbon_calculate():
     elif local_import == 'import':
         c = 0
         c += 0.132 * fertilizer
-        c += 0.028 * plant_value
-        c += 0.03 * soil_value
-        c += 0.033 * post_value
+        c += 0.028 * plant
+        c += 0.03 * soil
+        c += 0.033 * post
         c += 0.00015 * int(transport)
         kg = int(weight)
 
