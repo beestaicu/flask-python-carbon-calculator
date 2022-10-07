@@ -120,36 +120,25 @@ def carbon_calculate():
     c = 0
     color = "alert-success"
 
-    if fertilizer == "yes_f":
-        fertilizer_value = 1
-    else:
-        fertilizer_value = 0
+    def yes_no(name):
+        if name == "yes":
+            name = 1
+        else:
+            name = 0
+        return name
 
-    if plant == "yes_p":
-        plant_value = 1
-    else:
-        plant_value = 0
+    fertilizer = yes_no(fertilizer)
+    plant = yes_no(plant)
+    soil = yes_no(soil)
+    post = yes_no(post)
+    glass = yes_no(glass)
 
-    if soil == "yes_s":
-        soil_value = 1
-    else:
-        soil_value = 0
-
-    if post == "yes_po":
-        post_value = 1
-    else:
-        post_value = 0
-
-    if glass == "yes_green":
-        glass_value = 1
-    else:
-        glass_value = 0
 
 
     if local_import == 'local':
         if open_green == 'open':
             c = 0
-            c += 0.091 * fertilizer_value
+            c += 0.091 * fertilizer
             c += 0.0003 * plant_value
             c += 0.071 * soil_value
             c += 0.043 * post_value
@@ -159,7 +148,7 @@ def carbon_calculate():
         elif open_green == 'green':
             if heat_unheat == 'heat':
                 c = 0
-                c += 0.023 * fertilizer_value
+                c += 0.023 * fertilizer
                 c += 0.028 * plant_value
                 c += 0.157 * soil_value
                 c += 0.091 * post_value
@@ -169,7 +158,7 @@ def carbon_calculate():
                 kg = int(weight)
             elif heat_unheat == 'unheat':
                 c = 0
-                c += 0.01 * fertilizer_value
+                c += 0.01 * fertilizer
                 c += 0.025 * plant_value
                 c += 0.013 * soil_value
                 c += 0.086 * post_value
@@ -180,7 +169,7 @@ def carbon_calculate():
 
     elif local_import == 'import':
         c = 0
-        c += 0.132 * fertilizer_value
+        c += 0.132 * fertilizer
         c += 0.028 * plant_value
         c += 0.03 * soil_value
         c += 0.033 * post_value
@@ -192,14 +181,14 @@ def carbon_calculate():
 
     note = "The carbon emission of 1kg of lettuce: " + str(c) + ".\r\n "\
            + "The overall carbon emissions:" + str(c*kg)+" .\r\n" \
-           + "The local_import you chosen: "+ local_import +" .\r\n" \
-           + "The open_green you chosen: " + open_green +" .\r\n" \
-           + "The heat_unheat you chosen: " + heat_unheat + " .\r\n" \
-           + "The fertilizer you chosen: " + fertilizer + " .\r\n" \
-           + "The plant you chosen: " + plant +" .\r\n" \
-           + "The soil you chosen: " + soil +" .\r\n" \
-           + "The post you chosen: " + post +" .\r\n" + \
-           "The glass you chosen: " + glass + " .\r\n"
+           + "The local_import you have chosen: "+ local_import +" .\r\n" \
+           + "The open_green you have chosen: " + open_green +" .\r\n" \
+           + "The heat_unheat you have chosen: " + heat_unheat + " .\r\n" \
+           + "The fertilizer you have chosen: " + str(fertilizer) + " .\r\n" \
+           + "The plant you have chosen: " + str(plant) +" .\r\n" \
+           + "The soil you have chosen: " + str(soil) +" .\r\n" \
+           + "The post you have chosen: " + str(post) +" .\r\n" + \
+           "The glass you have chosen: " + str(glass) + " .\r\n"
 
     return render_template("carbon_emissions.html", result=c, note=note, color=color)
 
